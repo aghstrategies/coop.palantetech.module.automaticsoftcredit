@@ -165,7 +165,7 @@ function automaticsoftcredit_civicrm_pre($op, $objectName, $id, &$params) {
     'sequential' => 1,
     'is_active' => 1,
     'contact_id_a' => $cid,
-    'relationship_type_id' => 7, //FIXME: This relationship_type_id is currently hardcoded, we should load it from settings
+    'relationship_type_id' => array('IN' => array(7, 6, 2)), //FIXME: This relationship_type_id is currently hardcoded, we should load it from settings
   );
   $result = civicrm_api('Relationship', 'get', $apiParams);
 
@@ -190,7 +190,7 @@ function automaticsoftcredit_civicrm_post( $op, $objectName, $objectId, &$object
      'version' => 3,
       'sequential' => 1,
       'contact_id_a' => $cid,
-      'relationship_type_id' => 7, //FIXME: This relationship_type_id is currently hardcoded, we should load it from settings
+      'relationship_type_id' => array('IN' => array(7, 6, 2)), //FIXME: This relationship_type_id is currently hardcoded, we should load it from settings
     );
     $result = civicrm_api('Relationship', 'get', $params);
     //if we have the auto soft credit relationship for one or more contacts, create a soft credit for each
